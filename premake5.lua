@@ -4,46 +4,45 @@ project "GLFW"
     -- project specifications
     kind "StaticLib"
     language "C"
-    location "external-libraries/glfw"
 
     -- compilation output directories
-    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-    objdir ("bin-obj/" .. outputdir .. "/%{prj.name}")
+    targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("../../bin-obj/" .. outputdir .. "/%{prj.name}")
 
     -- files common to all systems
     files {
         "include/GLFW/glfw3.h",
         "include/GLFW/glfw3native.h",
         "src/context.c",
+        "src/egl_context.c",
         "src/init.c",
         "src/input.c",
         "src/monitor.c",
-        "src/platform.c",
-        "src/vulkan.c",
-        "src/window.c",
-        "src/osmesa_context.c",
-        "src/egl_context.c",
         "src/null_init.c",
         "src/null_monitor.c",
         "src/null_window.c",
         "src/null_joystick.c",
+        "src/osmesa_context.c",
+        "src/platform.c",
+        "src/vulkan.c",
+        "src/window.c",
     }
 
     -- linux specific source files
     filter "system:linux" 
         files {
             -- Linux Base
+            "src/linux_joystick.c",
             "src/posix_time.c",
             "src/posix_thread.c",
             "src/posix_module.c",
-            "src/linux_joystick.c",
 
             -- X11 support
+            "src/glx_context.c",
             "src/x11_init.c",
             "src/x11_monitor.c",
             "src/x11_window.c",
             "src/xkb_unicode.c",
-            "src/glx_context.c",
 
             -- Wayland support
 
@@ -54,25 +53,25 @@ project "GLFW"
         }
 
         defines {
-            "_GLFW_BUILD_X11",
-            -- "GLFW_BUILD_WAYLAND",
+            "_GLFW_X11",
+            -- "_GLFW_WAYLAND",
         }
 
     -- macos specific source files
-    filter "system:macos"
+    filter "system:macosx"
         files {
-            "src/posix_thread.c",
-            "src/posix_module.c",
             "src/cocoa_time.c",
             "src/cocoa_joystick.m",
             "src/cocoa_init.m",
             "src/cocoa_monitor.m",
             "src/cocoa_window.m",
+            "src/posix_thread.c",
+            "src/posix_module.c",
             "src/nsgl_context.m",
         }
 
         defines {
-            "_GLFW_BUILD_COCOA",
+            "_GLFW_COCOA",
         }
 
     -- windows specific source files
@@ -91,7 +90,7 @@ project "GLFW"
         }
 
         defines {
-            "_GLFW_BUILD_WIN32",
+            "_GLFW_WIN32",
         }
 
     filter "configurations:Debug"
