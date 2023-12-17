@@ -53,6 +53,11 @@ project "GLFW"
             -- "src/xkb_unicode.c",
         }
 
+        defines {
+            "_GLFW_BUILD_X11",
+            -- "GLFW_BUILD_WAYLAND",
+        }
+
     -- macos specific source files
     filter "system:macos"
         files {
@@ -64,6 +69,10 @@ project "GLFW"
             "src/cocoa_monitor.m",
             "src/cocoa_window.m",
             "src/nsgl_context.m",
+        }
+
+        defines {
+            "_GLFW_BUILD_COCOA",
         }
 
     -- windows specific source files
@@ -79,6 +88,10 @@ project "GLFW"
             "src/win32_monitor.c",
             "src/win32_window.c",
             "src/wgl_context.c",
+        }
+
+        defines {
+            "_GLFW_BUILD_WIN32",
         }
 
     filter "configurations:Debug"
