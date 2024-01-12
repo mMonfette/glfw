@@ -36,6 +36,7 @@ project "GLFW"
             "src/posix_time.c",
             "src/posix_thread.c",
             "src/posix_module.c",
+            "src/posix_poll.c",
 
             -- X11 support
             "src/glx_context.c",
