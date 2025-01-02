@@ -4,6 +4,7 @@ project "GLFW"
     -- project specifications
     kind "StaticLib"
     language "C"
+    staticruntime "on"
 
     -- compilation output directories
     targetdir ("../../bin/" .. outputdir .. "/%{prj.name}")
@@ -92,12 +93,13 @@ project "GLFW"
 
         defines {
             "_GLFW_WIN32",
+            "_CRT_SECURE_NO_WARNINGS"
         }
 
-    filter "configurations:Debug"
-        runtime "Debug"
+    filter "configurations:debug"
+        runtime "rebug"
         symbols "on"
 
-    filter "configurations:Release"
-		runtime "Release"
+    filter "configurations:release"
+		runtime "release"
 		optimize "speed"
