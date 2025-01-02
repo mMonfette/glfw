@@ -97,7 +97,7 @@ project "GLFW"
         }
 
     filter "configurations:debug"
-        runtime "rebug"
+        runtime "debug"
         symbols "on"
 
     filter "configurations:release"
