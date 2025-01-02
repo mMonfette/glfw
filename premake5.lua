@@ -97,9 +97,9 @@ project "GLFW"
         }
 
     filter "configurations:debug"
-        runtime "debug"
+        runtime "Debug"
         symbols "on"
 
     filter "configurations:release"
-		runtime "release"
+		runtime "Release"
 		optimize "speed"
